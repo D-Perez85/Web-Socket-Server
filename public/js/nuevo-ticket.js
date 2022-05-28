@@ -5,7 +5,6 @@ const btnCrear = document.querySelector('button');
 
 const socket = io();
 
-
 socket.on('connect', () => {
     btnCrear.disabled = false;
 });
@@ -18,11 +17,8 @@ socket.on('ultimo-ticket', (ultimo) => {
     lblNuevoTicket.innerText = 'Ticket ' + ultimo;
 })
 
-
-btnCrear.addEventListener( 'click', () => {
-   
+btnCrear.addEventListener( 'click', () => {   
     socket.emit( 'siguiente-ticket', null, ( ticket ) => {
         lblNuevoTicket.innerText = ticket;
     });
-
 });

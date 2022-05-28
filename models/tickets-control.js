@@ -8,15 +8,12 @@ class Ticket {
     }
 }
 
-
 class TicketControl{
-
     constructor(){
         this.ultimo = 0; 
         this.hoy = new Date().getDate(); 
         this.tickets = []; 
         this.ultimos = []; 
-
         this.init(); 
     }
     get toJson(){
@@ -51,26 +48,18 @@ class TicketControl{
             return 'Ticket ' + ticket.numero;
         }
         atenderTicket( escritorio ) {
-
             // No tenemos tickets
             if ( this.tickets.length === 0 ) {
                 return null;
             }
-    
             const ticket = this.tickets.shift(); // this.tickets[0];
             ticket.escritorio = escritorio;
-    
             this.ultimos.unshift( ticket );
-    
-            if ( this.ultimos.length > 4 ) {
-                this.ultimos.splice(-1,1);
-            }
-    
+                if ( this.ultimos.length > 4 ) {
+                    this.ultimos.splice(-1,1);
+                }    
             this.guardarDB();
-    
             return ticket;
         }
-    
-    
     }
-    module.exports = TicketControl; 
+module.exports = TicketControl; 
