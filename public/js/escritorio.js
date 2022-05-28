@@ -11,9 +11,11 @@ const searchParams = new URLSearchParams(window.location.search);
         throw new Error(' El escritorio es obligatorio')
     }
 
-    const escritorio = searchParams.get('escritorio'); 
+const escritorio = searchParams.get('escritorio'); 
 lblEscritorio.innerText = escritorio; 
+
 divAlerta.style.display = 'none'; 
+
 const socket = io();
 
 socket.on('connect', () => {
@@ -22,6 +24,16 @@ socket.on('connect', () => {
 socket.on('disconnect', () => {
     btnAtender.disabled = true;
 });
+socket.on('tickets-pendientes', ( pendientes ) => {
+    if ( pendientes === 0 ) {
+        lblPendientes.style.display = 'none';
+    } else {
+        lblPendientes.style.display = '';
+        lblPendientes.innerText = pendientes;
+    }
+})
+
+
 btnAtender.addEventListener( 'click', () => {
     socket.emit( 'atender-ticket', {escritorio}, ( {ok, ticket, msg}) => {         
         if ( !ok ) {
