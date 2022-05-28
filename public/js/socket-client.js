@@ -8,8 +8,6 @@ const btnEnviar  = document.querySelector('#btnEnviar');
 
 const socket = io();
 
-
-
 socket.on('connect', () => {
     lblOffline.style.display = 'none';
     lblOnline.style.display  = '';
