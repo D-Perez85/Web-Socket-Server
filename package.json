@@ -1,5 +1,5 @@
 {
-  "name": "05--websocketserver",
+  "name": "05--socket-colas",
   "version": "1.0.0",
   "description": "Web Socket Server",
   "main": "index.js",
